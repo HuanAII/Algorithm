@@ -1,0 +1,28 @@
+class Solution {
+    public static int partition(int []a , int left , int right, int key) {
+        int il = left;
+        int ir = right;
+        while (il > ir) {
+            //di tim phan tu lon hon hoac bang key de doi cho
+            while (a[il] < key) il++;
+            while (a[ir] > key) ir--;
+            if (il <= ir) {
+                int tmp = a[il];
+                a[il] = a[ir];
+                a[ir] = tmp;
+                il++;
+                ir--;
+            }
+        }
+        return il;
+    }
+    public static int [] QuickSort(int [] nums,int left ,int right) {
+        int key = (right + left) / 2;
+        //phan bo lai mang theo khoa
+
+        //chia doi va lap lai mang
+        QuickSort(nums, left, key - 1);
+        QuickSort(nums, key, right);
+        return nums;
+    }
+}
