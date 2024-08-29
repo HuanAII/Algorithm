@@ -1,1 +1,32 @@
+class Solution {
+    public static int [] mergeSort (int [] nums,int left ,int right) {
+        if(left>right) return new int [0];
+        if (left==right) {
+            int [] newNums = {nums[left]};
+            return newNums;
+        }
+        int mid = (left +right)/2;
+        int []a1=mergeSort(nums,left,mid);
+        int []a2=mergeSort(nums,mid+1,right);
+        int [] a=new int [a1.length+a2.length];
 
+        int i=0;int j=0;int k=0;
+        while(k<a1.length + a2.length){
+            if (i<a1.length&&j<a2.length){
+                if (a1[i]<=a2[j]){
+                    a[k++]=a1[i++];
+                }
+                else a[k++]=a2[j++];
+            } else {
+                if(i<a1.length){
+                    a[k++]=a1[i++];
+                }
+                else a[k++]=a2[j++];
+            }
+        }
+        return a;
+    }
+    public static int[] sortArray (int [] nums){
+        return mergeSort(nums,0,nums.length-1);
+    }
+}
